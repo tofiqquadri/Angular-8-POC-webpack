@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title></title>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header_main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-6">
+          <a href="#" class="logo">Brand</a>
+        </div>
+        <div class="col-md-6 col-6">
+          <nav class="navbar navbar-expand-lg navbar-dark">
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button> -->
+            <div class="" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-0 ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">
+												<i class="fa fa-comment-o" aria-hidden="true"></i>
+											</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+												<i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <span>99</span>
+											</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+												<i class="fa fa-sign-in" aria-hidden="true"></i> Logout
+											</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Left Side -->
+  <div class="left-panel">
+    <!-- User-profile -->
+    <div class="user-profile">
+      <img src="assets/images/avtar.jpg" class="img-fluid" alt="Avtar">
+      <a href="#" class="username">Username</a>
+    </div>
+    <!-- Left Nav -->
+    <ul class="left-nav">
+      <li>
+        <a href="#" title="Home">
+								<i class="fa fa-home" aria-hidden="true"></i> Home
+							</a>
+      </li>
+      <li>
+        <a href="#" title="Orders">
+								<i class="fa fa-list" aria-hidden="true"></i> Orders
+							</a>
+      </li>
+      <li>
+        <a href="#" title="Customers">
+								<i class="fa fa-users" aria-hidden="true"></i> Customers
+							</a>
+      </li>
+      <li>
+        <a href="#" title="Catalogue">
+								<i class="fa fa-table" aria-hidden="true"></i> Catalogue
+							</a>
+      </li>
+      <li>
+        <a href="#" title="Users">
+								<i class="fa fa-user" aria-hidden="true"></i> Users
+							</a>
+      </li>
+    </ul>
+  </div>
+  <!-- right Side -->
+  <div class="right-panel">
+    <div class="right-body">
+      <!-- Main Heading -->
+      <div class="main_heading">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Catalogue</h2>
+          </div>
+          <div class="col-md-6">
+            <ul class="float-right action-menu">
+              <li class="dropdown">
+                <a href="#" title="More Action" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> More Action
+												<i class="fa fa-angle-down" aria-hidden="true"></i>
+											</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">View Deleted SKUs</a>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="btn" title="Add New SKU">
+												<i class="fa fa-plus" aria-hidden="true"></i> Add New SKU
+											</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Catalogue Form -->
+      <div class="right-body-wrap">
+        <form class="catalogue-form" action="" method="post">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <input type="text" [(ngModel)]="searchProductPattern" [ngModelOptions]="{standalone: true}" name="searchProductPattern" placeholder="Search name or code" class="form-control pl-50">
+                <button type="button" name="search-icon">
+													<i class="fa fa-search" aria-hidden="true"></i>
+												</button>
+              </div>
+              <ul>
+                <li>
+                  <a href="#" title="Filter"> Filter </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" title="Trash" class="alerts" (click)="delete()">
+														<i class="fa fa-trash-o" aria-hidden="true"></i>
+													</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" title="Make Visible" (click)="makeVisible()"> Make Visible </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" title="Make Not Visible" class="alerts" (click)="makeInVisible()"> Make Not Visible </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" title="Clear" (click)="clearFilters()"> Clear </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group float-right">
+                <label>Show</label>
+                <input id="35411534" type="number" name="pageSize" [value]="pageSize" [(ngModel)]="pageSize">
+                <label>Enteries</label>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Catalogue Table -->
+        <form class="" action="" method="post">
+          <div class="table-responsive">
+            <table class="table catalogue-table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th>
+                    <input id="toggleAll" name="toggleAll" value="toggleAll" type="checkbox" class="form-control" (change)="toggleAll()" [checked]="allUserSelectCheckBox">
+                  </th>
+                  <th>
+                    <select class="form-control" [(ngModel)]="selectedProductCode" name="selectedProductCode">
+                      <option [ngValue]="''"> Prod. Code </option>
+                      <option *ngFor="let productCode of productCodes" [ngValue]="productCode" >{{productCode}}</option>
+   														</select>
+                  </th>
+                  <th>
+                    <select class="form-control" [(ngModel)]="selectedProductName" name="selectedProductName">
+                      <option [ngValue]="''"> Name </option>
+                      <option *ngFor="let productName of productNames" [ngValue]="productName" >{{productName}}</option>
+   														</select>
+                  </th>
+                  <th class="text-center"> Visible? </th>
+                  <th>
+                    <!-- class="form-control" name="selectedCategory"  -->
+                    <select class="form-control" [(ngModel)]="selectedCategory" name="categorySelect">
+                      <option [ngValue]="''"> Category </option>
+   										<option *ngFor="let category of categories" [ngValue]="category" >{{category}}</option>
+   									</select>
+                  </th>
+                  <th class="text-center">Guide Price</th>
+                  <th class="text-center">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productDetails | productFilter: searchProductPattern: selectedCategory: selectedProductName: selectedProductCode | paginate: { id: 'foo',
+                                                      itemsPerPage: pageSize,
+                                                      currentPage: p,
+                                                      totalItems: total }">
+                  <td>
+                    <input name="product.productName" type="checkbox" class="form-control" [(ngModel)]="product.checkBoxEnabled" (change)="checkBoxChanged( product.id )">
+                  </td>
+                  <td> {{product.productCode}} </td>
+                  <td> {{product.productName}} </td>
+                  <td *ngIf="product.visible == true" class="text-center check">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </td>
+                  <td *ngIf="product.visible == false" class="text-center cross">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </td>
+                  <td> {{product.category}} </td>
+                  <td class="text-center"> {{product.guidePrice}} <span>/ pk</span> </td>
+                  <td class="text-center">
+                    <a href="#">
+  																	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  																</a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </form>
+
+
+        <!-- Bottom Pagination -->
+
+        <div class="bottom_pagination">
+          <div class="row">
+            <pagination-controls id="foo" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"></pagination-controls>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+</body>
+
+</html>
