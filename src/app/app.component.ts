@@ -30,13 +30,13 @@ export class AppComponent {
 
   allUserSelectCheckBox = false;
 
-  //PAGINATION FIELDS
+  // PAGINATION FIELDS
   pageSize: any = 10;
   p: any = 1;
   total: any = 0;
 
   getCategories() {
-    for (var i = 0; i < this.productDetails.length; i++) {
+    for (let i = 0; i < this.productDetails.length; i++) {
       if (!this.categories.includes(this.productDetails[i].category)) {
         this.categories.push(this.productDetails[i].category);
       }
@@ -44,7 +44,7 @@ export class AppComponent {
   }
 
   getProductNames() {
-    for (var i = 0; i < this.productDetails.length; i++) {
+    for (let i = 0; i < this.productDetails.length; i++) {
       if (!this.productNames.includes(this.productDetails[i].productName)) {
         this.productNames.push(this.productDetails[i].productName);
       }
@@ -52,7 +52,7 @@ export class AppComponent {
   }
 
   getProductCodes() {
-    for (var i = 0; i < this.productDetails.length; i++) {
+    for (let i = 0; i < this.productDetails.length; i++) {
       if (!this.productCodes.includes(this.productDetails[i].productCode)) {
         this.productCodes.push(this.productDetails[i].productCode);
       }
@@ -68,15 +68,15 @@ export class AppComponent {
     this.allUserSelectCheckBox = false;
 
     if (this.isProductExist(productId) === false) {
-      this.selectedProducts.push(this.productDetails.find((product) => product.id == productId));
-      let productIndex = this.productDetails.findIndex((product) => product.id == productId);
+      this.selectedProducts.push(this.productDetails.find((product) => product.id === productId));
+      const productIndex = this.productDetails.findIndex((product) => product.id === productId);
       this.productDetails[productIndex].checkBoxEnabled = true;
     } else {
 
       this.selectedProducts = this.selectedProducts.filter(
-        (product) => product.id != productId
+        (product) => product.id !== productId
       );
-      let productIndex = this.productDetails.findIndex((product) => product.id == productId);
+      const productIndex = this.productDetails.findIndex((product) => product.id === productId);
       this.productDetails[productIndex].checkBoxEnabled = false;
     }
 
@@ -85,7 +85,7 @@ export class AppComponent {
   isProductExist(productId: any): boolean {
 
     for (let i = 0; i < this.selectedProducts.length; i++) {
-      if (this.selectedProducts[i].id == productId) {
+      if (this.selectedProducts[i].id === productId) {
         return true;
       }
     }
@@ -115,7 +115,7 @@ export class AppComponent {
   makeVisible() {
     for (let i = 0; i < this.productDetails.length; i++) {
       for (let j = 0; j < this.selectedProducts.length; j++) {
-        if (this.productDetails[i].id == this.selectedProducts[j].id) {
+        if (this.productDetails[i].id === this.selectedProducts[j].id) {
           this.productDetails[i].visible = true;
         }
       }
@@ -126,7 +126,7 @@ export class AppComponent {
   makeInVisible() {
     for (let i = 0; i < this.productDetails.length; i++) {
       for (let j = 0; j < this.selectedProducts.length; j++) {
-        if (this.productDetails[i].id == this.selectedProducts[j].id) {
+        if (this.productDetails[i].id === this.selectedProducts[j].id) {
           this.productDetails[i].visible = false;
         }
       }
@@ -138,7 +138,7 @@ export class AppComponent {
     for (let i = 0; i < this.selectedProducts.length; i++) {
 
       this.productDetails = this.productDetails.filter(
-        (product) => product.id != this.selectedProducts[i].id
+        (product) => product.id !== this.selectedProducts[i].id
       );
     }
     this.selectedProducts = [];
@@ -152,14 +152,13 @@ export class AppComponent {
 
     this.allUserSelectCheckBox = false;
 
-    for (var i = 0; i < this.productDetails.length; i++) {
+    for (let i = 0; i < this.productDetails.length; i++) {
       this.productDetails[i].checkBoxEnabled = false;
     }
     this.selectedProducts = [];
   }
 
-  clearFilters()
-  {
+  clearFilters() {
     this.selectedCategory = '';
     this.searchProductPattern = '';
     this.selectedProductName = '';
