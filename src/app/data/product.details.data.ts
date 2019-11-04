@@ -1,12 +1,4 @@
-export class Product {
-  id: any;
-  productCode: any;
-  productName: any;
-  visible: any;
-  category: any;
-  guidePrice: any;
-  checkBoxEnabled: any;
-}
+import { Product } from "./model";
 
 export const ProductDetailsData: Product[] =  [
     { "id": 1, "productCode": "63146-108", "productName": "Bronco II", "visible": false, "category": "Ford", "guidePrice": "$9.51", "checkBoxEnabled": false },
