@@ -1,11 +1,10 @@
 
-export class Product {
-    id: any;
-    productCode: any;
-    productName: any;
-    visible: any;
-    category: any;
-    guidePrice: any;
-    checkBoxEnabled: any;
-  }
-  
+export interface Product {
+  id: any;
+  productCode: any;
+  productName: any;
+  visible: any;
+  category: any;
+  guidePrice: any;
+  checkBoxEnabled: any;
+}

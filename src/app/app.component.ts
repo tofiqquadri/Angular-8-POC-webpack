@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductDetailsData } from './data/product.details.data';
-import { Product } from './data/product.details.data';
+import { Product } from './data';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,8 @@ export class AppComponent {
 
     this.total = this.productDetails.length;
   }
+
+  // tslint:disable:prefer-for-of
 
   productDetails: Product[] = ProductDetailsData;
   selectedProducts: Product[] = [];

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-import { Product } from '../data/product.details.data';
+import { Product } from '../data';
 
 @Pipe({
   name: 'productFilter'
@@ -7,6 +7,7 @@ import { Product } from '../data/product.details.data';
 
 @Injectable()
 export class ProductFilter implements PipeTransform {
+  // tslint:disable:prefer-for-of
 
   transform(list: any, searchText: any, category: any, productName: any, productCode: any): any {
 
@@ -16,9 +17,9 @@ export class ProductFilter implements PipeTransform {
       const tempCat: Product[] = [];
 
       for (let i = 0; i < list.length; i++) {
-        if ((list[i].category.toUpperCase().includes(category.toUpperCase()))
-          && (list[i].productCode.toUpperCase().includes(productCode.toUpperCase()))
-          && (list[i].productName.toUpperCase().includes(productName.toUpperCase()))) {
+        if ((this.hasSearchTextInContext(list[i].category, category))
+          && (this.hasSearchTextInContext(list[i].productCode, productCode))
+          && (this.hasSearchTextInContext(list[i].productName, productName))) {
           tempCat.push(list[i]);
         }
       }
@@ -30,8 +31,8 @@ export class ProductFilter implements PipeTransform {
         if (temp.length === 0) {
           for (let i = 0; i < list.length; i++) {
 
-            if (list[i].productName.toUpperCase().includes(searchText.toUpperCase()) ||
-              list[i].productCode.toUpperCase().includes(searchText.toUpperCase())) {
+            if (this.hasSearchTextInContext(list[i].productName, searchText) ||
+              this.hasSearchTextInContext(list[i].productCode, searchText)) {
               temp.push(list[i]);
             }
           }
@@ -40,8 +41,8 @@ export class ProductFilter implements PipeTransform {
           const tempSearch: Product[] = [];
 
           for (let i = 0; i < temp.length; i++) {
-            if (temp[i].productName.toUpperCase().includes(searchText.toUpperCase()) ||
-              temp[i].productCode.toUpperCase().includes(searchText.toUpperCase())) {
+            if (this.hasSearchTextInContext(temp[i].productName, searchText) ||
+              this.hasSearchTextInContext(temp[i].productCode, searchText)) {
               tempSearch.push(temp[i]);
             }
           }
@@ -57,4 +58,9 @@ export class ProductFilter implements PipeTransform {
     }
 
   }
+
+  hasSearchTextInContext(searchContext: string, searchText: string) {
+    return searchContext.toUpperCase().includes(searchText.toUpperCase());
+  }
 }
+
